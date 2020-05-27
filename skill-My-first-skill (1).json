@@ -1,0 +1,576 @@
+{
+  "intents": [
+    {
+      "intent": "What_is_the_status_of_my_location",
+      "examples": [
+        {
+          "text": "Is_my_location_green"
+        },
+        {
+          "text": "Is_my_location_red"
+        },
+        {
+          "text": "Is_my_location_orange"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "No",
+      "examples": [
+        {
+          "text": "Dont think so"
+        },
+        {
+          "text": "Nothing"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Location",
+      "examples": [
+        {
+          "text": "Vijayawada"
+        },
+        {
+          "text": "Nalgonda"
+        },
+        {
+          "text": "Warangal"
+        },
+        {
+          "text": "Hyderabad"
+        },
+        {
+          "text": "Vizag"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "hi",
+      "examples": [
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hey"
+        },
+        {
+          "text": "Hi there"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "No_of_cases_in_my_city",
+      "examples": [
+        {
+          "text": "No_of_cases_in_my_area"
+        },
+        {
+          "text": "Any_new_cases_in_my _city"
+        },
+        {
+          "text": "Recent_covidcases_in_my_city"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "Location",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Hyderabad",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "City1",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Tarnaka",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "City",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Secundrabad",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Location2",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Vijayawada",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "City3",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Punjagutta",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "City2",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Dilsuknagar",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Location3",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Vizag",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Location4",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Warangal",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Location1",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Nalgonda",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Tarnaka",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "14 cases from the past 5 minutes"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@City1",
+      "dialog_node": "node_2_1590526195201",
+      "previous_sibling": "node_1_1590526108850"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1590526240306",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#hi",
+      "dialog_node": "node_7_1590519590201",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Nalgonda",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Nalgonda district is in the red zone for the past 8 days"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Any other location"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Location1",
+      "dialog_node": "node_1_1590520973828",
+      "previous_sibling": "node_7_1590520914835"
+    },
+    {
+      "type": "standard",
+      "title": "No of cases in my city",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your city name please"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#No_of_cases_in_my_city",
+      "dialog_node": "node_3_1590525351187",
+      "previous_sibling": "node_9_1590524967864"
+    },
+    {
+      "type": "standard",
+      "title": "My location status",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "May I know your location pls"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#What_is_the_status_of_my_location",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1590522748591",
+      "previous_sibling": "node_7_1590519590201"
+    },
+    {
+      "type": "standard",
+      "title": "Hyderabad",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hyderabad is in the green zone for the past 15 hours."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Any other location you are curious about"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Location",
+      "dialog_node": "node_7_1590519653441",
+      "previous_sibling": "node_6_1590522748591"
+    },
+    {
+      "type": "standard",
+      "title": "No",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Happy to help you"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Sanitize regularly! Stay home stay safe"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#No",
+      "dialog_node": "node_9_1590524967864",
+      "previous_sibling": "node_1_1590520973828"
+    },
+    {
+      "type": "standard",
+      "title": "Vijayawada",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Vijayawada is in the orange zone for the past 5 hours"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Any other location you are curious about"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Location2",
+      "dialog_node": "node_7_1590520914835",
+      "previous_sibling": "node_9_1590520799808"
+    },
+    {
+      "type": "standard",
+      "title": "Vizag",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Vizag is in the red zone for the past 18 days"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Any other areas you are curious about"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Location3",
+      "dialog_node": "node_7_1590519688954",
+      "previous_sibling": "node_7_1590519653441"
+    },
+    {
+      "type": "standard",
+      "title": "Warangal",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Warangal is in the containment zone for the past 12 hours"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Any other location you are curious about"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@Location4",
+      "dialog_node": "node_9_1590520799808",
+      "previous_sibling": "node_7_1590519688954"
+    },
+    {
+      "type": "standard",
+      "title": "Punjagutta",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "2 cases in the past 5 hours"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@City3",
+      "dialog_node": "node_3_1590526240306",
+      "previous_sibling": "node_2_1590526195201"
+    },
+    {
+      "type": "standard",
+      "title": "Dilsuknagar",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "15 cases from the past 3 hours"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@City2",
+      "dialog_node": "node_8_1590525967107",
+      "previous_sibling": "node_3_1590525351187"
+    },
+    {
+      "type": "standard",
+      "title": "Secundrabad",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "12 cases from the past 1 hour"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "@City",
+      "dialog_node": "node_1_1590526108850",
+      "previous_sibling": "node_8_1590525967107"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "My first skill",
+  "language": "en",
+  "description": ""
+}
